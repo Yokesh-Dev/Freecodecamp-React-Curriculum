@@ -1,0 +1,146 @@
+** start of index.html **
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event RSVP</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.5/babel.min.js"></script>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      src="index.jsx"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      data-presets="react"
+      data-type="module"
+    >
+      import { EventRSVPForm } from './index.jsx';
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        <EventRSVPForm />
+      );
+    </script>
+  </body>
+</html>
+
+** end of index.html **
+
+** start of styles.css **
+
+input {
+  border:solid red dashed 4px;
+  margin:5px;
+  display:flex;
+  border:4px blue solid
+}
+
+label {
+  margin:5px;
+}
+
+
+
+** end of styles.css **
+
+** start of index.jsx **
+
+const { useState } = React;
+
+export  function EventRSVPForm() {
+  const [name, setName] = useState('')
+  const [email, setEmail] =useState("")
+  const [dietary, setDietary] = useState("")
+  const [attendees, setAttendees] = useState("")
+  const [isChecked, setIsChecked] = useState(false)
+ const [submittedData, setSubmittedData] = useState(null)
+  //  const [state,action, isPending] = useActionState(fn, {})
+
+  const containerStyle={
+      display:"flex",
+      flexDirection:"column",
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '2rem'
+
+  }
+  const label={
+    display: 'flex',
+    flexDirection: 'column'
+  }
+  const formStyle ={
+    display: 'flex',
+    flexDirection: 'column',
+   
+    fontSize:"1.1rem"
+    
+  }
+  
+
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+  setSubmittedData({name, email, attendees,dietary,isChecked})
+
+
+  }
+  
+  return (<div style={containerStyle} className="container section">
+  <h1>Event RSVP Form</h1>
+  <form style={formStyle}  onSubmit={handleSubmit} className="form-wrap">
+   
+  <label style={label} className='section column'>Name:
+   <input type='text' placeholder="your name"  value={name} 
+   onChange={(e)=>setName(e.target.value)}
+   required />
+   </label>
+   <label className='section column' style={label}>Email:
+   <input type='email'
+    placeholder='your email' 
+     value={email} 
+   onChange={(e)=>setEmail(e.target.value)}
+   required/>
+   </label>
+   <label
+   style={label} className='section column'> 
+   Number of attendees
+   <input type='number'
+   placeholder='number of attendees' required
+    value={attendees} 
+    onChange={(e)=>setAttendees(e.target.value)}/>
+   </label >
+   <label style={label} className='section column'>Dietary Preferences:
+   <input type='text' placeholder='Dietary Preferences (optional)' 
+   value={dietary} 
+   onChange={(e)=>setDietary(e.target.value)}/>
+   </label>
+   <label className='section'>Bringing additional guests?
+   <input type='checkbox'
+    checked={isChecked}
+    onChange={(e =>setIsChecked(e.target.checked))}
+   />
+   </label>
+    <button type='submit' 
+    >Submit RSVP</button>
+</form>
+{submittedData&&<div className="confirmation">
+<h1>RSVP Submitted!</h1>
+<p>Name: {name}</p>
+<p>Email: {email}</p>
+<p>Number of attendees:{attendees}</p>
+<p>Dietary preferences: {dietary}</p>
+<p>Bringing additional guests: {isChecked? "Yes":"No"}</p>
+</div>}
+  </div>)
+}
+
+** end of index.jsx **
+
