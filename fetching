@@ -1,0 +1,80 @@
+//import the useState and useEffect hooks:
+import {useState, useEffect} from 'react';
+
+
+
+//create three state variables - track fetching Data , Data , Capture error
+
+const [loading,setLoading] =useState(null);
+const [data,setData] =useState(true);
+const [error,setError] =useState(null);
+
+
+// Fetch API Inside useEffect - This useEffect fetches the data with the Fetch API and sets all the states. 
+
+
+useEffect( () => {
+fetch("https - Link")
+.then( (res) =>res.json())
+.then( (data) => {
+setData(data);
+setLoading(false)
+})
+.catch((err) => {
+setError(err) ;
+setLoading(false);
+})
+},[]);
+
+-----------------Using async / await
+useEffect ( () => {
+const fetchData = async () => {
+try {
+const res = await fetch("url")
+
+if(!res.ok) {
+throw new error("network issue);
+}
+const data = await res.json();
+setData(data);
+}
+
+catch(err) {
+setError(err)
+}
+
+finally {
+setLoading(false)
+}
+
+fetchData()
+} ,[] 
+)
+----------------------------
+
+useEffect( () => {
+const fetchData = async () => {
+
+try {
+const res =await axios.get("url")
+}
+
+here const data = await res.json() Not required as Axios automatically parses JSON, so there's no need for that.
+---------------------------------
+npm install swr
+
+import useSWR from 'swr';
+
+const fetcher =(url) => fetch(url).then((res) =>res.json());
+const {data, error} = useSWR (endpoint , fetcher)
+
+
+Example:
+
+import useSWR from 'swr';
+
+const fetcher =(url) => fetch(url).then((res) =>res.json());
+const {data,error} = useSWR (
+"url", fetcher)
+
+
