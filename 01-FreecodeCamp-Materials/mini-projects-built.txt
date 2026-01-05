@@ -1,0 +1,26 @@
+Build a Reusable Mega Navbar 
+Build a Reusable Footer - Lab
+Build a Reusable Profile Card Component
+Build a Mood Board - Lab
+
+Toggle Text App
+Build a Color Picker App -Lab
+Build a Fruit Search App
+Build a One-Time Password Generator -Lab
+Build a Superhero Application Form
+Build an Event RSVP - Lab
+Build a Shopping List App
+
+Build a Currency Converter -Certification Project
+Build a Tic-Tac-Toe Game - Certification Project
+
+Build an Error Message Component -Workshop
+Build a CTA Component -Workshop
+Build a Pricing Component -Workshop
+Build a Music Shopping Cart Page - lab
+Design a Photography Exhibit -Lab
+
+
+YTS
+Data Visualization and D3
+TypeScript Fundamentals
